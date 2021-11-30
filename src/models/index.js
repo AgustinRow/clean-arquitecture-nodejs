@@ -20,16 +20,26 @@ if (config.use_env_variable) {
   )
 }
 
-sequelize.sync({ alter: true })
+const modelFile = file => {
+  const modelPath = __dirname + '/' + file
+  const isDirectory = fs.statSync(modelPath).isDirectory()
+  if (isDirectory) {
+    return fs.readdirSync(modelPath).filter(file => {
+      return (
+        file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+      )
+    })
+  }
+}
 
 fs.readdirSync(__dirname)
   .filter(file => {
-    return (
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-    )
+    if (file !== basename) {
+      return modelFile(file)
+    }
   })
   .forEach(file => {
-    const model = require(path.join(__dirname, file))(
+    const model = require(path.join(__dirname + '/' + file, file))(
       sequelize,
       Sequelize.DataTypes
     )

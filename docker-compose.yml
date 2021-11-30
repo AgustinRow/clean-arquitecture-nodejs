@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  fiat:
+    build:
+      context: .
+      dockerfile: Dockerfile-production
+      target: test
+    command: ["npm","start"]
+    env_file:
+      - .env
+    ports:
+      - "9080:8080"
+    links:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: mydbpassword
+    ports:
+      - "5432:5432"

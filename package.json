@@ -6,9 +6,12 @@
   "scripts": {
     "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec npm restart",
+    "watch": "nodemon --exec npm restart",
     "restart": "rimraf dist && npm run build && npm run start",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "migrate-create": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "migration-skeleton": "npx sequelize-cli migration:generate --name"
   },
   "repository": {
     "type": "git",
@@ -21,7 +24,6 @@
     "url": "https://github.com/AgustinRow/clean-arquitecture-nodejs/issues"
   },
   "homepage": "https://github.com/AgustinRow/clean-arquitecture-nodejs#readme",
-  
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -44,6 +46,7 @@
     "@babel/preset-env": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.1",
+    "babel-register": "^6.26.0",
     "eslint": "^4.15.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
