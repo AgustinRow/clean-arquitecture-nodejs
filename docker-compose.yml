@@ -1,23 +1,18 @@
 version: '3.7'
 services:
-  fiat:
-    build:
-      context: .
-      dockerfile: Dockerfile-production
-      target: test
-    command: ["npm","start"]
+  app:
+    build: .
+    command: ['npm', 'start']
     env_file:
       - .env
     ports:
-      - "9080:8080"
-    links:
+      - '3000:3000'
+    depends_on:
       - db
-    volumes:
-      - .:/app
 
   db:
-    image: postgres:11-alpine
+    image: mysql:8.0.27
     environment:
-      POSTGRES_PASSWORD: mydbpassword
+      MYSQL_ROOT_PASSWORD: 1234
     ports:
-      - "5432:5432"
+      - '3306:3306'
