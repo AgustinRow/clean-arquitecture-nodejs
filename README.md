@@ -15,26 +15,20 @@ The backend
 - ORM: Sequelize
 - Container: Docker
 
-### Dockerising manually
-
-Setting up `mysql` in a docker container manually and expose it in port 3306:
-
-Make sure the port 3306 is open, visible and is not used by any other service. You could check that with `netstat -a | grep :3306`
-
-- create the docker image: `docker run --name=neocomplexx --env MYSQL_ROOT_PASSWORD=1234 --detach --publish 3306:3306 mysql_db`
-
-- create network: `docker network create --driver=bridge network-neocomplexx`
-
-- connect your localhost with that network: `docker run -d --network=network-neocomplexx -p 3306:3306 --name=neocomplexx --rm mysql:8.0.27`
-
-- create a new database: `docker exec neocomplexx mysql -u root -p"1234" --execute="create database neocomplexx"`
-
-After all those steps you should be able to connect with the database
-
 ### Dockerising automatically
 
-Pre-requisites: `docker-compose`
+Pre-requisites: [docker engine](https://www.docker.com/) & [docker-compose](https://docs.docker.com/compose/install/)
 
-- build and run container(node app + mysql): `docker-compose up -d --build`
+Make sure the port 3306 is open, visible and is not used by any other service locally in your machine
 
-- to stop containers: `docker stop clean-arquitecture-nodejs_app_1 clean-arquitecture-nodejs_db_1`
+- This step should be done only once:
+
+  1.  build and run container(node app + mysql): `docker-compose up --build`
+
+  2.  should get an error saying `Unknown database`, so you may have to create that database. Without stoping the current container, open a new console and run this command to create the db: `docker exec mysql_db mysql -u root -p"YOUR_PASSWORD" --execute="create database YOUR_DATABASE"`
+
+  3.  stop the container: `ctrl+c` or `docker-compose stop`
+
+  4.  Once completed last steps you can run your dockers container every time you want with: `docker-compose up`
+
+Keep in mind that if you want to make any changes on your docker file or docker-compose file you should attach `--build` to step 4.

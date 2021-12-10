@@ -19,6 +19,7 @@ export const start = async () => {
     app.listen(port, () => {
       console.log(`REST API on http://localhost:${port}`)
     })
+    // This is only to have some feedback if database has connected or not
     sequelize
       .authenticate()
       .then(() => {

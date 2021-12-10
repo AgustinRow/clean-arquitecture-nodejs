@@ -1,18 +1,21 @@
 version: '3.7'
 services:
-  app:
-    build: .
-    command: ['npm', 'start']
-    env_file:
-      - .env
-    ports:
-      - '3000:3000'
-    depends_on:
-      - db
-
   db:
     image: mysql:8.0.27
+    container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: 1234
     ports:
       - '3306:3306'
+  app:
+    image: 'app'
+    container_name: 'node_app'
+    build: .
+    volumes:
+      - .:/home/node/code
+      - /home/node/code/node_modules
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    command: ash -c "/wait && npm run migrate && npm run dev"
