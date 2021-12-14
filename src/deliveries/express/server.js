@@ -3,6 +3,7 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 import db from '../../models/index'
+import dreamsRouter from './routes/dream.route'
 
 const sequelize = db.sequelize
 const app = express()
@@ -11,6 +12,8 @@ app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
+
+app.use('/dreams', dreamsRouter)
 
 const port = 3000
 
