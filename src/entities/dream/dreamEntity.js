@@ -1,5 +1,5 @@
-const dreamEntity = ({ errors }) => ({ id, hour, date }) => {
-  if (!hour) {
+const dreamEntity = ({ errors }) => ({ id, hours, date }) => {
+  if (!hours) {
     console.error(errors.hour.text);
     throw new Error(errors.hour.name);
   }
@@ -9,8 +9,7 @@ const dreamEntity = ({ errors }) => ({ id, hour, date }) => {
   }
 
   return Object.freeze({
-    id,
-    hour,
+    hours,
     date,
   });
 };

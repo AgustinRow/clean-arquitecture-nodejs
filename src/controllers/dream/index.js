@@ -6,7 +6,7 @@ const createDreamControllerInstance = createDreamController({
 });
 
 const dreamController = Object.freeze({
-    createDreamControllerInstance,
+  createDreamControllerInstance,
 });
 
 export default dreamController;

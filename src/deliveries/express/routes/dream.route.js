@@ -3,7 +3,7 @@ import { createDreamControllerInstance } from '../../../controllers/dream';
 
 const router = express.Router();
 
-router.post('/', createDreamController);
+router.post('/', createDreamControllerInstance);
 router.get('/');
 
 export default router;

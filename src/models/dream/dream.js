@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Dream.init(
     {
-      hour: DataTypes.INTEGER,
+      hours: DataTypes.INTEGER,
       date: DataTypes.DATE,
     },
     {

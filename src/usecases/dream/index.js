@@ -1,5 +1,5 @@
 import instanceCreateDream from './createDream';
-import instanceDreamDb from '../../models/';
+import instanceDreamDb from '../../models/dream/';
 import { DREAM_ERRORS as errors } from '../../errors/dream';
 
 const createDream = instanceCreateDream({
@@ -9,11 +9,9 @@ const createDream = instanceCreateDream({
   },
 });
 
-//por que hace un freeze del objeto??
 const dream = Object.freeze({
-  createBussines,
+  createDream,
 });
 
-//No se porque los exporta de estas dos formas??
 export default dream;
 export { createDream };

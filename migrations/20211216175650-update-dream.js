@@ -15,8 +15,8 @@ module.exports = {
       date: {
         type: Sequelize.INTEGER,
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      createdAt: { type: Sequelize.DATE },
+      updatedAt: { type: Sequelize.DATE },
     });
   },
 
