@@ -17,7 +17,10 @@ The backend
 
 ### Dockerising automatically
 
-Pre-requisites: [docker engine](https://www.docker.com/) & [docker-compose](https://docs.docker.com/compose/install/ servi)
+Pre-requisites:
+
+- [docker engine](https://www.docker.com/) & [docker-compose](https://docs.docker.com/compose/install/ servi)
+- Install `sequelize-cli` globally
 
 Make sure the port 3306 is open, visible and is not used by any other service locally in your machine
 

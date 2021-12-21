@@ -1,4 +1,4 @@
-//FIXME: res status should be here??
+//FIXME: res.status... should be here??
 const createDreamController = dependencies => async (req, res) => {
   const { createDream } = dependencies;
   const { body: createParams } = req;
@@ -6,8 +6,8 @@ const createDreamController = dependencies => async (req, res) => {
     error.message = `dream.${error.message}`;
     throw error;
   });
-
-  res.status(201).json(dream);
+  return { response: { dream }, status: 201 };
+  //res.status(201).json(dream);
 };
 
 export default createDreamController;
