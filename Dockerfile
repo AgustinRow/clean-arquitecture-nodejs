@@ -1,4 +1,4 @@
-FROM node:16.13.0-alpine
+FROM node:14.17.4-alpine
 
 ENV WAIT_VERSION 2.7.2
 
