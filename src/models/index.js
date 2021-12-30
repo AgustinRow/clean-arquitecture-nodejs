@@ -3,9 +3,15 @@ import * as path from 'path';
 import Sequelize from 'sequelize';
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-import configVar from '../../config/config';
-
-const config = configVar[env];
+import development from '../../config/development';
+import production from '../../config/production';
+let config;
+if (env != 'development') {
+  config = production;
+} else {
+  config = development;
+}
+//const config = configVar[env];
 const models = {};
 
 let sequelize;

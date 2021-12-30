@@ -3,7 +3,7 @@ import { logRequest, logResponse, logError } from '../../logger/expressLog';
 import { keysToCamel, keysToSnake } from '../../helpers/objectHelpers';
 import { error as errorFormat } from '../../helpers/errorHandler';
 
-const execute = (functionController) => {
+const execute = functionController => {
   return async (req, res, next) => {
     const tx = req.body.tx || null;
     const localTx = uuid.v4();
@@ -23,7 +23,7 @@ const execute = (functionController) => {
     } catch (error) {
       console.log(error);
       logError(error.message, startTime, tx, localTx);
-      next(errorFormat(res, error.message, 401));
+      next(errorFormat(res, error.message));
     }
   };
 };

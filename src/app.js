@@ -1,4 +1,8 @@
-import { start } from './deliveries/express/server'
+import serverless from './deliveries/express/server';
 
 /** START SERVER **/
-start()
+const handler = () => {
+  serverless;
+};
+
+export default handler;

@@ -1,0 +1,37 @@
+service: neocomplexx
+frameworkVersion: '2 || 3'
+
+custom:
+  secrets: ${file(config/production.js)}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+  stage: ${self:custom.secrets.NODE_ENV}
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    DB_NAME: ${self:custom.secrets.database}
+    DB_USER: ${self:custom.secrets.username}
+    DB_PASSWORD: ${self:custom.secrets.password}
+    DB_HOST: ${self:custom.secrets.host}
+    DB_PORT: ${self:custom.secrets.port}
+  vpc:
+    securityGroupIds:
+      - ${self:custom.secrets.SECURITY_GROUP_ID}
+    subnetIds:
+      - ${self:custom.secrets.SUBNET1_ID}
+      - ${self:custom.secrets.SUBNET2_ID}
+      - ${self:custom.secrets.SUBNET3_ID}
+      - ${self:custom.secrets.SUBNET4_ID}
+      - ${self:custom.secrets.SUBNET5_ID}
+      - ${self:custom.secrets.SUBNET6_ID}
+
+functions:
+  api:
+    handler: dist/deliveries/express/server.handler
+    events:
+      - httpApi: '*'
+
+plugins:
+  - serverless-offline

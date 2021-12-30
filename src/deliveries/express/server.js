@@ -1,9 +1,11 @@
+//TODO: change body-parser for express.json(), express.urlencoded()
 import express from 'express';
 import { json, urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
 
 import dreamsRouter from './routes/dream.route';
+import serverless from 'serverless-http';
 
 const app = express();
 
@@ -16,7 +18,9 @@ app.use('/dreams', dreamsRouter);
 
 const port = 3000;
 
-export const start = async () => {
+module.exports.handler = serverless(app);
+
+/* export const start = async () => {
   try {
     app.listen(port, () => {
       console.log(`REST API on http://localhost:${port}`);
@@ -24,4 +28,4 @@ export const start = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+}; */

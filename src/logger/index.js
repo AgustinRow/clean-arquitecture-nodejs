@@ -23,7 +23,7 @@ const logger = createLogger({
     format.splat(),
     format.json(),
   ),
-  defaultMeta: { service: 'tax-gateway' },
+  defaultMeta: { service: 'pilot' },
   transports: [
     new transports.File({
       filename: `logs/${process.env.NODE_ENV}.log`,
