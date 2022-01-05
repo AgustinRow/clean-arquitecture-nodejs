@@ -18,7 +18,13 @@ app.use('/dreams', dreamsRouter);
 
 const port = 3000;
 
-module.exports.handler = serverless(app);
+const start = async () => {
+  serverless(app);
+};
+
+export default start;
+
+//module.exports.handler = serverless(app);
 
 /* export const start = async () => {
   try {

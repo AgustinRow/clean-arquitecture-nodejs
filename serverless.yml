@@ -28,26 +28,20 @@ provider:
       - ${self:custom.secrets.SUBNET6_ID}
 
 functions:
-  health:
-    handler: dist/deliveries/handler.health
+  healthCheck:
+    handler: dist/deliveries/serverless/health.handler
     events:
-      - http:
-          path: health
+      - htpp:
+          path: /
           method: get
           cors: true
-  postDreams:
-    handler: dist/deliveries/post.postDream
+  postDream:
+    handler: dist/deliveries/serverless/index
     events:
-      - http:
+      - htpp:
           path: dreams
           method: post
           cors: true
-  getDreams:
-    handler: dist/deliveries/get.getDream
-    events:
-      - http:
-          path: dreams/{id}
-          method: get
-          cors: true
+
 plugins:
   - serverless-offline

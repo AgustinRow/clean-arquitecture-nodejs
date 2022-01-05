@@ -1,3 +1,3 @@
 import { start } from './deliveries/express/server';
 /** START SERVER **/
-start();
+export const handler = async () => start();
